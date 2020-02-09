@@ -1,1 +1,40 @@
-<p>registration-form works!</p>
+<div class="registration-wrapper fadeInDown blue-grey lighten-5">
+  <div class="login-container">
+    <form class="col s6">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="first_name" type="text" class="validate" />
+          <label for="first_name" class="blue-grey-text lighten-5">First name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="last_name" type="text" class="validate" />
+          <label for="last_name" class="blue-grey-text lighten-5">Last name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="text" class="validate" />
+          <label for="email" class="blue-grey-text lighten-5">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="registration_password" type="text" class="validate" />
+          <label for="registration_password" class="blue-grey-text lighten-5">Password</label>
+        </div>
+      </div>
+      <div class="right">
+        <a [routerLink]="'/login'" class="registration-link">Sign in</a>
+        <button
+          class="btn waves-effect teal darken-4"
+          type="submit"
+          name="action"
+        >
+          Registration
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,4 +1,74 @@
-.main-page-container {
-  display: table-cell;
-  vertical-align: middle;
+.login-wrapper,
+.registration-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 15%;
+  box-shadow: 0 0 20px #000;
+  border-radius: 5%;
+}
+
+.login-container {
+  width: 80%;
+}
+
+.registration-wrapper {
+  height: 500px;
+  margin-top: 5%;
+}
+
+.input-field label {
+  font-size: 1.4em;
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.registration-link {
+  padding: 0 10px;
+}
+
+.registration-link:hover {
+  text-decoration: underline;
 }
