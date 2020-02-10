@@ -1,16 +1,16 @@
 <div class="search_input_container">
-  <form (ngSubmit)="getClipInfo($event)">
+  <form [formGroup]="searchForm" (ngSubmit)="getClipInfo()">
     <div class="search_form input-field col s12">
       <input
         placeholder="Placeholder"
         id="first_name"
         type="text"
         class="validate"
+        formControlName="inputValue"
       />
       <button
         class="btn waves-effect teal darken-4"
         type="submit"
-        name="action"
       >
         Search
       </button>
