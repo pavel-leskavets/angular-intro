@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {map, switchMap} from 'rxjs/operators';
 
 @Component({
-             selector: 'app-search',
-             templateUrl: './search.component.html',
-             styleUrls: ['./search.component.scss']
-           })
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
+})
 export class SearchComponent implements OnInit {
 
   public searchForm: FormGroup;
@@ -27,6 +28,14 @@ export class SearchComponent implements OnInit {
 
   public getClipInfo(): void {
     const searchValue: string = this.searchForm.get('inputValue').value;
-    this.youtubeApiService.getClipsInfo(searchValue).subscribe(res => console.log(res));
+    this.youtubeApiService.getClipsInfo(searchValue)
+      .pipe(
+        switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
+          .pipe(
+            map(stat => ({info, stat}))
+          )
+        )
+      )
+      .subscribe(res => console.log(res));
   }
 }
