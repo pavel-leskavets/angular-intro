@@ -11,6 +11,7 @@ import {map, switchMap} from 'rxjs/operators';
 export class SearchComponent implements OnInit {
 
   public searchForm: FormGroup;
+  public isSettings: boolean;
 
   constructor(private youtubeApiService: YoutubeApiService,
               private formBuilder: FormBuilder) {
@@ -37,5 +38,9 @@ export class SearchComponent implements OnInit {
         )
       )
       .subscribe(res => console.log(res));
+  }
+
+  public showSettings(): void {
+    this.isSettings = !this.isSettings;
   }
 }

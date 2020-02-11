@@ -5,7 +5,6 @@ export interface ClipInfo {
     etag: string;
     id: {
         kind: string,
-        etag: string,
         videoId: string
     };
     snippet: {
@@ -19,20 +18,6 @@ export interface ClipInfo {
             high: Thumbnails
         },
         channelTitle: string,
-        tags: string[],
-        categoryId: string,
-        liveBroadcastContent: string,
-        localized: {
-            title: string,
-            description: string,
-        },
-        defaultAudioLanguage: string,
-    };
-    statistics: {
-        viewCount: string,
-        likeCount: string,
-        dislikeCount: string,
-        favoriteCount: string,
-        commentCount: string
+        liveBroadcastContent: string
     };
 }

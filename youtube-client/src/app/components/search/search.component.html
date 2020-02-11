@@ -17,3 +17,8 @@
     </div>
   </form>
 </div>
+<div (click)="showSettings()">
+  <i class="material-icons dp48">settings</i>
+</div>
+<app-search-settings *ngIf="isSettings"></app-search-settings>
+<app-user></app-user>
