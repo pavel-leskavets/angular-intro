@@ -1,2 +1,2 @@
-<app-search></app-search>
-<app-clip-container></app-clip-container>
+<app-search (clipData)="setClipInfo($event)"></app-search>
+<app-clip-container [clipInfo]="clipInfo"></app-clip-container>

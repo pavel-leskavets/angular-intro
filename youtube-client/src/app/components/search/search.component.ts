@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {map, switchMap} from 'rxjs/operators';
+import {FullInfo} from '../../models/full-info';
 
 @Component({
   selector: 'app-search',
@@ -10,6 +11,7 @@ import {map, switchMap} from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
 
+  @Output() public clipData: EventEmitter<FullInfo> = new EventEmitter();
   public searchForm: FormGroup;
   public isSettings: boolean;
 
@@ -33,11 +35,13 @@ export class SearchComponent implements OnInit {
       .pipe(
         switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
           .pipe(
-            map(stat => ({info, stat}))
+            map(stats => ({info, stats}))
           )
         )
       )
-      .subscribe(res => console.log(res));
+      .subscribe(res  => {
+        this.clipData.emit(res);
+      });
   }
 
   public showSettings(): void {
