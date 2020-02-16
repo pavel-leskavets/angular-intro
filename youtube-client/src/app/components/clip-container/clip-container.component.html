@@ -1,3 +1,6 @@
-<div *ngFor="let clip of clipInfo">
-  <app-clip-card [clip]="clip"></app-clip-card>
+<div class="clip_container">
+  <div *ngFor="let clip of clipInfo" class="clip_item">
+    <app-clip-card [clip]="clip"></app-clip-card>
+  </div>
 </div>
+
