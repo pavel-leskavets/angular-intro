@@ -1,4 +1,4 @@
-<div class="clip_card">
+<div class="clip_card" [appBorderByDate]="clip.snippet.publishedAt">
   <div>
     <img [src]="clip.snippet.thumbnails.medium.url" class="card_image">
   </div>
