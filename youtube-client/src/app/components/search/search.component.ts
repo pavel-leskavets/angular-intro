@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {map, switchMap} from 'rxjs/operators';
-import {FullInfo} from '../../models/full-info';
+import {ClipInfoService} from '../../services/clip-info.service';
+import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 
 @Component({
   selector: 'app-search',
@@ -11,11 +12,12 @@ import {FullInfo} from '../../models/full-info';
 })
 export class SearchComponent implements OnInit {
 
-  @Output() public clipData: EventEmitter<FullInfo> = new EventEmitter();
+  public clipInfo: ClipInfoFromStatistics[];
   public searchForm: FormGroup;
   public isSettings: boolean;
 
   constructor(private youtubeApiService: YoutubeApiService,
+              private clipInfoService: ClipInfoService,
               private formBuilder: FormBuilder) {
   }
 
@@ -40,7 +42,8 @@ export class SearchComponent implements OnInit {
         )
       )
       .subscribe(res  => {
-        this.clipData.emit(res);
+        this.clipInfo = res.stats.items;
+        this.clipInfoService.setClipInfo.next(this.clipInfo);
       });
   }
 

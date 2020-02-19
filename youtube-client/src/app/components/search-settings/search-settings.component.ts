@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ClipInfoService} from '../../services/clip-info.service';
+import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {SortParameters} from '../../models/sort-parameters';
 
 @Component({
   selector: 'app-search-settings',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchSettingsComponent implements OnInit {
 
-  constructor() { }
+  @Input() private clipInfo: ClipInfoFromStatistics[];
 
-  ngOnInit(): void {
+  public filterForm: FormGroup;
+
+  constructor(private clipInfoService: ClipInfoService,
+              private formBuilder: FormBuilder) { }
+
+  private initFilterForm(): void {
+    this.filterForm = this.formBuilder.group({
+      filterValue: null
+    });
   }
 
+  public ngOnInit(): void {
+    this.initFilterForm();
+  }
+
+  public sortClips(sortParameters: SortParameters): void {
+    this.clipInfoService.sortKind.next(sortParameters);
+  }
 }

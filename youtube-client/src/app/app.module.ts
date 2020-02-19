@@ -16,6 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BorderByDateDirective } from './directives/border-by-date.directive';
+import { SortClipsPipe } from './pipes/sort-clips.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BorderByDateDirective } from './directives/border-by-date.directive';
     NotFoundComponent,
     MainPageComponent,
     BorderByDateDirective,
+    SortClipsPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,25 @@
 <div class="additional_settings_container">
-  <ul> Sorting by:
-    <li><a class="sort_parameters_link">Date</a></li>
-    <li><a class="sort_parameters_link">Count of views</a></li>
-    <li><a class="sort_parameters_link">by word or sentance</a></li>
-    <li>
-      <input
-        placeholder="Placeholder"
-        id="sort_by_word"
-        type="text"
-        class="validate"
-        formControlName="inputValue"
-      />
-    </li>
-  </ul>
+  <form [formGroup]="filterForm">
+    <ul> Sorting by:
+      <li (click)="sortClips({sortParameter: 'byDate', filterValue: null})">
+        <a class="sort_parameters_link">Date</a>
+      </li>
+      <li (click)="sortClips({sortParameter: 'byViews', filterValue: null})">
+        <a class="sort_parameters_link">Count of views</a>
+      </li>
+      <li>
+        <a class="sort_parameters_link">by word or sentence</a>
+      </li>
+      <li>
+        <input
+            placeholder="Placeholder"
+            id="sort_by_word"
+            type="text"
+            class="validate"
+            formControlName="filterValue"
+            (input)="sortClips({sortParameter: 'byTitle', filterValue: $event.target.value})"
+        />
+      </li>
+    </ul>
+  </form>
 </div>

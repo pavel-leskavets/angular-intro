@@ -24,6 +24,6 @@
   <app-user></app-user>
 </div>
 <div class="search_settings_container">
-  <app-search-settings *ngIf="isSettings"></app-search-settings>
+  <app-search-settings [clipInfo]="clipInfo" *ngIf="isSettings"></app-search-settings>
 </div>
 
