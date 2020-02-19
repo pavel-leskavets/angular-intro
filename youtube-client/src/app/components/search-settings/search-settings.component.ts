@@ -3,6 +3,7 @@ import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {SortParameters} from '../../models/sort-parameters';
+import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-settings',
