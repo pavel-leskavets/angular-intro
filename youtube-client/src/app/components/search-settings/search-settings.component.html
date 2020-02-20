@@ -1,15 +1,13 @@
 <div class="additional_settings_container">
   <form [formGroup]="filterForm">
     <ul> Sorting by:
-      <li (click)="sortClips({sortParameter: 'byDate', filterValue: null})">
+      <li (click)="sortClips(sortTypes.ByDate)">
         <a class="sort_parameters_link">Date</a>
       </li>
-      <li (click)="sortClips({sortParameter: 'byViews', filterValue: null})">
+      <li (click)="sortClips(sortTypes.ByViews)">
         <a class="sort_parameters_link">Count of views</a>
       </li>
-      <li>
-        <a class="sort_parameters_link">by word or sentence</a>
-      </li>
+      <li>by word or sentence</li>
       <li>
         <input
             placeholder="Placeholder"
@@ -17,7 +15,7 @@
             type="text"
             class="validate"
             formControlName="filterValue"
-            (input)="sortClips({sortParameter: 'byTitle', filterValue: $event.target.value})"
+            (input)="sortClips(sortTypes.ByTitle)"
         />
       </li>
     </ul>

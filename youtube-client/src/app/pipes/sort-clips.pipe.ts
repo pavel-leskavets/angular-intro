@@ -1,20 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {ClipInfoFromStatistics} from '../models/clip-info-from-statistics';
 import {SortParameters} from '../models/sort-parameters';
+import {SortTypesEnum} from '../models/sort-types-enum';
+import {SortTypes} from '../enum/sort-types.enum';
 
 @Pipe({
   name: 'sortPipe'
 })
 export class SortClipsPipe implements PipeTransform {
 
-  private sortByDate: string = 'byDate';
-  private sortByViews: string = 'byViews';
-  private filterByTitle: string = 'byTitle';
+  private sortTypes: SortTypesEnum = SortTypes;
 
-  public transform(value: ClipInfoFromStatistics[], sortKind: SortParameters): ClipInfoFromStatistics[] {
+  public transform(value: ClipInfoFromStatistics[], sortParams: SortParameters): ClipInfoFromStatistics[] {
     if (value) {
-      switch (sortKind && sortKind.sortParameter) {
-        case this.sortByDate: {
+      switch (sortParams && sortParams.sortType) {
+        case this.sortTypes.ByDate: {
           return value.sort((a, b) => {
             const firstDate: Date = new Date(a.snippet.publishedAt);
             const secondDate: Date = new Date(b.snippet.publishedAt);
@@ -22,7 +22,7 @@ export class SortClipsPipe implements PipeTransform {
           });
         }
 
-        case this.sortByViews: {
+        case this.sortTypes.ByViews: {
           return value.sort((a, b) => {
             const firstAmount: number = +a.statistics.viewCount;
             const secondAmount: number = +b.statistics.viewCount;
@@ -30,10 +30,10 @@ export class SortClipsPipe implements PipeTransform {
           });
         }
 
-        case this.filterByTitle: {
+        case this.sortTypes.ByTitle: {
           return value.filter(clip => clip.snippet.title
             .toLowerCase()
-            .includes(sortKind.filterValue.toLowerCase()));
+            .includes(sortParams.filterValue.toLowerCase()));
         }
 
         default: {

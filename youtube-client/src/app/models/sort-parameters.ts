@@ -1,4 +1,4 @@
 export interface SortParameters {
-  sortParameter: string;
+  sortType: string;
   filterValue: string;
 }

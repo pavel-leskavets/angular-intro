@@ -4,22 +4,22 @@
       <div class="search_form input-field col s12">
         <input
           placeholder="Placeholder"
-          id="first_name"
+          id="search_input"
           type="text"
           class="validate"
           formControlName="inputValue"
         />
         <button
-          class="btn waves-effect teal darken-4"
+          class="btn waves-effect teal darken-4 search_button"
           type="submit"
         >
           Search
         </button>
+        <div class="additional_settings_button">
+          <i (click)="showSettings()" class="material-icons dp48">settings</i>
+        </div>
       </div>
     </form>
-  </div>
-  <div (click)="showSettings()">
-    <i class="material-icons dp48">settings</i>
   </div>
   <app-user></app-user>
 </div>
