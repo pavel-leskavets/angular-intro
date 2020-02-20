@@ -1,23 +1,26 @@
 <div class="additional_settings_container">
   <form [formGroup]="filterForm">
-    <ul> Sorting by:
-      <li (click)="sortClips(sortTypes.ByDate)">
-        <a class="sort_parameters_link">Date</a>
-      </li>
-      <li (click)="sortClips(sortTypes.ByViews)">
-        <a class="sort_parameters_link">Count of views</a>
-      </li>
-      <li>by word or sentence</li>
-      <li>
-        <input
-            placeholder="Placeholder"
-            id="sort_by_word"
-            type="text"
+    <table (matSortChange)="sortClips($event)" matSort>
+      <tr>
+        <th [mat-sort-header]="sortTypes.ByDate">
+          <a class="sort_parameters_link">Date</a>
+        </th>
+        <th [mat-sort-header]="sortTypes.ByViews">
+          <a class="sort_parameters_link">Count of views</a>
+        </th>
+        <th>
+          <label>by word or sentence</label>
+          <input
             class="validate"
             formControlName="filterValue"
-            (input)="sortClips(sortTypes.ByTitle)"
-        />
-      </li>
-    </ul>
+            id="sort_by_word"
+            placeholder="Enter the word"
+            type="text"
+
+          />
+        </th>
+      </tr>
+    </table>
   </form>
 </div>
+

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {SortParameters} from '../../models/sort-parameters';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-clip-container',
@@ -11,7 +12,7 @@ import {SortParameters} from '../../models/sort-parameters';
 export class ClipContainerComponent implements OnInit {
 
   public clipInfo: ClipInfoFromStatistics[];
-  public sortParams: SortParameters;
+  public sortParams: Sort;
 
   constructor(private clipInfoService: ClipInfoService) { }
 

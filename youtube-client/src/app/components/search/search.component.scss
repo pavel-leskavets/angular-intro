@@ -34,9 +34,13 @@ input[type=text] {
   background-color: #fff;
   padding: 0;
   margin: 0;
-  border-top-left-radius: 3%;
-  border-bottom-left-radius: 3%;
+  border-top-left-radius: 1%;
+  border-bottom-left-radius: 1%;
   border: none;
+}
+
+input[type=text]::placeholder {
+  color: #545c56;
 }
 
 .search_button {

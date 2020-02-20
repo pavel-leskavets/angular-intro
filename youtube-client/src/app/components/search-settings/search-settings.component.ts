@@ -4,6 +4,7 @@ import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SortTypes} from '../../enum/sort-types.enum';
 import {SortTypesEnum} from '../../models/sort-types-enum';
+import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-search-settings',
@@ -23,7 +24,8 @@ export class SearchSettingsComponent implements OnInit {
   private initFilterForm(): void {
     this.filterForm = this.formBuilder.group({
       filterValue: null,
-      sortType: null
+      sortType: null,
+      sortOrder: null
     });
   }
 
@@ -31,8 +33,7 @@ export class SearchSettingsComponent implements OnInit {
     this.initFilterForm();
   }
 
-  public sortClips(sortKind: string): void {
-    this.filterForm.get('sortType').setValue(sortKind);
-    this.clipInfoService.sortKind.next(this.filterForm.value);
+  public sortClips(sort: Sort): void {
+    this.clipInfoService.sortKind.next(sort);
   }
 }

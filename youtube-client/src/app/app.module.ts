@@ -17,6 +17,9 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BorderByDateDirective } from './directives/border-by-date.directive';
 import { SortClipsPipe } from './pipes/sort-clips.pipe';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -33,15 +36,18 @@ import { SortClipsPipe } from './pipes/sort-clips.pipe';
     MainPageComponent,
     BorderByDateDirective,
     SortClipsPipe,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
+],
+            imports: [
+              BrowserModule,
+              AppRoutingModule,
+              FormsModule,
+              BrowserAnimationsModule,
+              HttpClientModule,
+              ReactiveFormsModule,
+              MatSliderModule,
+              MatCheckboxModule,
+              MatSortModule,
+            ],
   providers: [],
   bootstrap: [AppComponent]
 })
