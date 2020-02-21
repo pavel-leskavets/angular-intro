@@ -1,0 +1,30 @@
+<div class="login-wrapper fadeInDown blue-grey lighten-5">
+  <div class="login-container">
+    <form class="col s6" (ngSubmit)="toMainPage()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="login" type="text" class="validate" />
+          <label for="login" class="blue-grey-text lighten-5">Login</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="text" class="validate" />
+          <label for="password" class="blue-grey-text lighten-5">Password</label>
+        </div>
+      </div>
+      <div class="right">
+        <a [routerLink]="'/registration'" class="registration-link">
+          Registration
+        </a>
+        <button
+          class="btn waves-effect teal darken-4"
+          type="submit"
+          name="action"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

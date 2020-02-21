@@ -1,0 +1,6 @@
+<div class="clip_container">
+  <div *ngFor="let clip of clipInfo | sortPipe: sortParams" class="clip_item">
+    <app-clip-card [clip]="clip"></app-clip-card>
+  </div>
+</div>
+

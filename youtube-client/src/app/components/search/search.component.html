@@ -1,0 +1,29 @@
+<div class="search_container">
+  <div class="search_input_container">
+    <form [formGroup]="searchForm" (ngSubmit)="getClipInfo()">
+      <div class="search_form input-field col s12">
+        <input
+          placeholder="Placeholder"
+          id="search_input"
+          type="text"
+          class="validate"
+          formControlName="inputValue"
+        />
+        <button
+          class="btn waves-effect teal darken-4 search_button"
+          type="submit"
+        >
+          Search
+        </button>
+        <div class="additional_settings_button">
+          <i (click)="showSettings()" class="material-icons dp48">settings</i>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-user></app-user>
+</div>
+<div class="search_settings_container">
+  <app-search-settings [clipInfo]="clipInfo" *ngIf="isSettings"></app-search-settings>
+</div>
+
