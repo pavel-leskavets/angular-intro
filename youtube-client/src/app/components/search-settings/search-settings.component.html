@@ -16,7 +16,7 @@
             id="sort_by_word"
             placeholder="Enter the word"
             type="text"
-
+            (input)="setFilterValue($event.target.value)"
           />
         </th>
       </tr>

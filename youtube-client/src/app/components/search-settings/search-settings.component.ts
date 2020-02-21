@@ -36,4 +36,8 @@ export class SearchSettingsComponent implements OnInit {
   public sortClips(sort: Sort): void {
     this.clipInfoService.sortKind.next(sort);
   }
+
+  public setFilterValue(filterValue: string): void {
+    this.clipInfoService.filterValue.next(filterValue);
+  }
 }

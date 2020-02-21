@@ -10,8 +10,6 @@ import { SearchSettingsComponent } from './components/search-settings/search-set
 import { ClipCardComponent } from './components/clip-card/clip-card.component';
 import { FullInfoCardComponent } from './components/full-info-card/full-info-card.component';
 import { ClipContainerComponent } from './components/clip-container/clip-container.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,6 +18,8 @@ import { SortClipsPipe } from './pipes/sort-clips.pipe';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSortModule} from '@angular/material/sort';
+import { FilterClipsPipe } from './pipes/filter-clips.pipe';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -30,24 +30,24 @@ import {MatSortModule} from '@angular/material/sort';
     ClipCardComponent,
     FullInfoCardComponent,
     ClipContainerComponent,
-    LoginFormComponent,
-    RegistrationFormComponent,
     NotFoundComponent,
     MainPageComponent,
     BorderByDateDirective,
     SortClipsPipe,
+    FilterClipsPipe,
 ],
-            imports: [
-              BrowserModule,
-              AppRoutingModule,
-              FormsModule,
-              BrowserAnimationsModule,
-              HttpClientModule,
-              ReactiveFormsModule,
-              MatSliderModule,
-              MatCheckboxModule,
-              MatSortModule,
-            ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    AuthModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatSortModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
