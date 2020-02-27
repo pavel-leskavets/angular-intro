@@ -1,15 +1,15 @@
 <div class="login-wrapper fadeInDown blue-grey lighten-5">
   <div class="login-container">
-    <form class="col s6" (ngSubmit)="toMainPage()">
+    <form class="col s6" [formGroup]="loginForm" (ngSubmit)="toMainPage()" >
       <div class="row">
         <div class="input-field col s12">
-          <input id="login" type="text" class="validate" />
+          <input id="login" type="text" class="validate" formControlName="login" />
           <label for="login" class="blue-grey-text lighten-5">Login</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="text" class="validate" />
+          <input id="password" type="text" class="validate" formControlName="password"/>
           <label for="password" class="blue-grey-text lighten-5">Password</label>
         </div>
       </div>
@@ -20,7 +20,6 @@
         <button
           class="btn waves-effect teal darken-4"
           type="submit"
-          name="action"
         >
           Sign in
         </button>

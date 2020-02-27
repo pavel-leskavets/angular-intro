@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {ClipInfoFromStatistics} from '../models/clip-info-from-statistics';
 import {SortTypesEnum} from '../models/sort-types-enum';
-import {SortTypes} from '../enum/sort-types.enum';
+import {SortTypes} from '../../shared/enum/sort-types.enum';
 import {Sort} from '@angular/material/sort';
 
 @Pipe({

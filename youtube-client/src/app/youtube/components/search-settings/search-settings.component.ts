@@ -2,14 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {SortTypes} from '../../enum/sort-types.enum';
+import {SortTypes} from '../../../shared/enum/sort-types.enum';
 import {SortTypesEnum} from '../../models/sort-types-enum';
 import {Sort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-search-settings',
   templateUrl: './search-settings.component.html',
-  styleUrls: ['./search-settings.component.scss', '../../app.component.scss']
+  styleUrls: ['./search-settings.component.scss', '../../../app.component.scss']
 })
 export class SearchSettingsComponent implements OnInit {
 
