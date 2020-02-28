@@ -47,7 +47,7 @@ export class LoginFormComponent implements OnInit {
     const user: User =  JSON.parse(window.localStorage.getItem(this.userKey));
     const loginFormValue: LoginForm = this.loginForm.value;
     if (user.login === loginFormValue.login && user.password === loginFormValue.password) {
-      this.authService.isAuthenticated = true;
+      this.authService.logIn();
       this.router.navigateByUrl('/main-page');
     }
   }

@@ -12,10 +12,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     RegistrationFormComponent,
     AuthPageComponent
   ],
-            imports: [
-              CommonModule,
-              AuthRoutingModule,
-              ReactiveFormsModule
-            ]
-          })
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule
+  ]
+})
 export class AuthModule { }

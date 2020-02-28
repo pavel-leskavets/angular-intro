@@ -34,7 +34,7 @@ export class RegistrationFormComponent implements OnInit {
 
   public saveNewUser(): void {
     window.localStorage.setItem(this.userKey, JSON.stringify(this.registrationForm.value));
-    this.authService.isAuthenticated = true;
+    this.authService.logIn();
     this.router.navigateByUrl('/login');
   }
 }

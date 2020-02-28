@@ -1,3 +1,4 @@
 export enum UserInfo {
-  localStorageKey = 'user'
+  localStorageKey = 'user',
+  isLogin = 'isLogin'
 }

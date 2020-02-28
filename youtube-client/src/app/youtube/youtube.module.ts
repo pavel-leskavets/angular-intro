@@ -8,11 +8,7 @@ import {MainPageComponent} from './components/main-page/main-page.component';
 import {SearchComponent} from './components/search/search.component';
 import {SearchSettingsComponent} from './components/search-settings/search-settings.component';
 import {NotFoundComponent} from '../core/components/not-found/not-found.component';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSortModule} from '@angular/material/sort';
 import {SharedModule} from '../shared/shared.module';
-import {ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/user.component';
 
 @NgModule({
@@ -29,11 +25,7 @@ import {UserComponent} from './components/user/user.component';
   imports: [
     CommonModule,
     YoutubeRoutingModule,
-    MatSliderModule,
-    MatCheckboxModule,
-    MatSortModule,
     SharedModule,
-    ReactiveFormsModule,
   ],
   exports: [
     ClipCardComponent,
@@ -44,6 +36,7 @@ import {UserComponent} from './components/user/user.component';
     SearchSettingsComponent,
     UserComponent,
     NotFoundComponent,
+    SharedModule
   ],
 })
 export class YoutubeModule {}
