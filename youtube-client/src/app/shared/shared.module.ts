@@ -7,12 +7,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SortClipsPipe} from '../youtube/pipes/sort-clips.pipe';
 import {FilterClipsPipe} from '../youtube/pipes/filter-clips.pipe';
 import {BorderByDateDirective} from '../youtube/directives/border-by-date.directive';
+import {CutOffPipe} from '../youtube/pipes/cut-off.pipe';
 
 @NgModule({
   declarations: [
     SortClipsPipe,
     FilterClipsPipe,
     BorderByDateDirective,
+    CutOffPipe
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import {BorderByDateDirective} from '../youtube/directives/border-by-date.direct
   exports: [
     BorderByDateDirective,
     SortClipsPipe,
-    FilterClipsPipe
+    FilterClipsPipe,
+    CutOffPipe
   ]
   })
 export class SharedModule {}

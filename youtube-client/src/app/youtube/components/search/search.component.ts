@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {map, switchMap} from 'rxjs/operators';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +16,7 @@ export class SearchComponent implements OnInit {
   public clipInfo: ClipInfoFromStatistics[];
   public searchForm: FormGroup;
   public isSettings: boolean;
+  public isInputDisabled: boolean;
 
   constructor(private youtubeApiService: YoutubeApiService,
               private clipInfoService: ClipInfoService,

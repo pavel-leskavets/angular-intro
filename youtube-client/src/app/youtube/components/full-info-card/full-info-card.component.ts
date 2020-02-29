@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ClipInfoService} from '../../services/clip-info.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 
 @Component({
@@ -10,25 +9,26 @@ import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 })
 export class FullInfoCardComponent implements OnInit {
 
-  private clipId: string;
-  private clipInfo: ClipInfoFromStatistics;
+  public currentClip: ClipInfoFromStatistics;
 
   constructor(private route: ActivatedRoute,
-              private clipInfoService: ClipInfoService) { }
+              private router: Router) {
+
+  }
 
   public ngOnInit(): void {
-   this.route.params.subscribe(params => {
-     console.log(params)
-     // this.clipId = params.id;
-     // this.getClipInfo();
-   });
+    this.route.params.subscribe(params => {
+        const clips: ClipInfoFromStatistics[] = this.route.snapshot.data.clips;
+        if (clips) {
+          this.currentClip = clips.find(clip => clip.id === params.id);
+        }
+      });
+    this.redirectToMainPage();
   }
 
-  public getClipInfo(): void {
-    this.clipInfoService.setClipInfo.subscribe(clips => {
-      this.clipInfo = clips.find(clip => clip.id === this.clipId);
-      console.log(this.clipInfo);
-    });
+  public redirectToMainPage(): void {
+    if (!this.currentClip) {
+      this.router.navigateByUrl('/main-page');
+    }
   }
-
 }

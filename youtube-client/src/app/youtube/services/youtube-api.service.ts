@@ -9,7 +9,7 @@ import {Statistics} from '../models/statistics';
 })
 export class YoutubeApiService {
 // AIzaSyB4wVDf4eedrmbz0h5UtPEOFmGLpixrCbQ
-  private apiKey: string = 'AIzaSyAXdhcX59-cN6sRj_nHOlNvNYllebYdL1U';
+  private apiKey: string = 'AIzaSyB4wVDf4eedrmbz0h5UtPEOFmGLpixrCbQ';
   private baseUrl: string = 'https://www.googleapis.com/youtube/v3';
   private clipsInfoUrl: string = `/search?key=${this.apiKey}&type=video&part=snippet&maxResults=50&q=`;
   private statisticsUrl: string = `/videos?key=${this.apiKey}&id=`;

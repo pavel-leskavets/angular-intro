@@ -17,6 +17,6 @@ export class ClipCardComponent implements OnInit {
   }
 
   public getMoreInfo(id: string): void {
-    this.router.navigate(['/main-page', this.clip]);
+    this.router.navigate(['/main-page', id]);
   }
 }

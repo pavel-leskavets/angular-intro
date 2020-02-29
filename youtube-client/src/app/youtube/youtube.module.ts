@@ -10,6 +10,10 @@ import {SearchSettingsComponent} from './components/search-settings/search-setti
 import {NotFoundComponent} from '../core/components/not-found/not-found.component';
 import {SharedModule} from '../shared/shared.module';
 import {UserComponent} from './components/user/user.component';
+import {MatSortModule} from '@angular/material/sort';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,11 @@ import {UserComponent} from './components/user/user.component';
     CommonModule,
     YoutubeRoutingModule,
     SharedModule,
+    MatSortModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
+
   ],
   exports: [
     ClipCardComponent,
