@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {map, switchMap} from 'rxjs/operators';
+import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -13,10 +12,11 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
+  private minRequestLength: number = 3;
+
   public clipInfo: ClipInfoFromStatistics[];
   public searchForm: FormGroup;
   public isSettings: boolean;
-  public isInputDisabled: boolean;
 
   constructor(private youtubeApiService: YoutubeApiService,
               private clipInfoService: ClipInfoService,
@@ -25,6 +25,9 @@ export class SearchComponent implements OnInit {
 
   public ngOnInit(): void {
     this.searchFormInit();
+    this.searchForm.get('inputValue').valueChanges
+      .pipe(debounceTime(1000))
+      .subscribe(() => this.getClipInfo());
   }
 
   public searchFormInit(): void {
@@ -35,6 +38,7 @@ export class SearchComponent implements OnInit {
 
   public getClipInfo(): void {
     const searchValue: string = this.searchForm.get('inputValue').value;
+    if (searchValue.length >= this.minRequestLength) {
     this.youtubeApiService.getClipsInfo(searchValue)
       .pipe(
         switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
@@ -47,6 +51,7 @@ export class SearchComponent implements OnInit {
         this.clipInfo = res.stats.items;
         this.clipInfoService.setClipInfo.next(this.clipInfo);
       });
+    }
   }
 
   public showSettings(): void {

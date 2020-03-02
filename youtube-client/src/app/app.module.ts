@@ -7,8 +7,10 @@ import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from './auth/services/auth.service';
+import {YoutubeApiService} from './youtube/services/youtube-api.service';
+import {HttpResponseInterceptor} from './core/services/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,14 @@ import {AuthService} from './auth/services/auth.service';
     AuthModule,
     CoreModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    YoutubeApiService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpResponseInterceptor,
+      multi: true
+    }
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })
