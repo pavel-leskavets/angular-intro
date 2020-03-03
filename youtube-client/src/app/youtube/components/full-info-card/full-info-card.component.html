@@ -1,0 +1,35 @@
+<div *ngIf="currentClip" class="full_info_card">
+  <img [src]="currentClip.snippet.thumbnails.standard.url" alt="clip-img" class="full_info_img">
+  <div class="full_info">
+    <div>
+      <h2 class="mat-h2">{{currentClip.snippet.title}}</h2>
+      <p class="full_info_date">{{currentClip.snippet.publishedAt | date:'fullDate'}}</p>
+    </div>
+    <div class="full_info_description">
+      {{currentClip.snippet.description.slice(0, 800)}}
+    </div>
+    <div class="clip_statistics">
+      <span class="statistics_info">
+        <i class="material-icons dp48">remove_red_eye</i>
+        <span class="statistics_info_text">{{currentClip.statistics.viewCount}}</span>
+      </span>
+      <span class="statistics_info">
+        <i class="material-icons dp48">favorite</i>
+        <span class="statistics_info_text">{{currentClip.statistics.likeCount}}</span>
+      </span>
+      <span class="statistics_info">
+        <i class="material-icons dp48">favorite_border</i>
+        <span class="statistics_info_text">{{currentClip.statistics.dislikeCount}}</span>
+      </span>
+      <span class="statistics_info">
+        <i class="material-icons dp48">comment</i>
+        <span class="statistics_info_text">{{currentClip.statistics.commentCount}}</span>
+      </span>
+    </div>
+    <button mat-button color="accent">
+      <a mat-raised-button routerLink="/main-page">Back to main page</a>
+    </button>
+
+  </div>
+</div>
+

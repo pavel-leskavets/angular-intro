@@ -1,0 +1,59 @@
+.search_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+}
+
+.search_input_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+
+.search_form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  height: 60px;
+}
+
+.search_settings_container {
+  width: 100%;
+  height: 100px;
+  padding: 0;
+}
+
+input[type=text] {
+  height: 36px;
+  color: #000;
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  border-top-left-radius: 1%;
+  border-bottom-left-radius: 1%;
+  border: none;
+}
+
+input[type=text]::placeholder {
+  color: #545c56;
+}
+
+.search_button {
+  padding-right: 20px;
+}
+
+.additional_settings_button {
+  margin-left: 30px;
+}
+
+:host {
+  app-user {
+    margin-left: 20px;
+  }
+}
+
