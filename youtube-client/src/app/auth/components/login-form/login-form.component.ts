@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../models/user';
 import {UserInfo} from '../../enum/user-info.enum';
 import {LoginForm} from '../../models/loginForm';
@@ -34,21 +34,20 @@ export class LoginFormComponent implements OnInit {
 
   public initLoginForm(): void {
     this.loginForm = this.formBuilder.group({
-      login: null,
-      password: null
+      login: [null, Validators.required],
+      password: [null, Validators.required]
     });
   }
 
   public toMainPage(): void {
-    this.checkUser();
-  }
-
-  public checkUser(): void {
-    const user: User =  JSON.parse(window.localStorage.getItem(this.userKey));
-    const loginFormValue: LoginForm = this.loginForm.value;
-    if (user.login === loginFormValue.login && user.password === loginFormValue.password) {
-      this.authService.logIn();
-      this.router.navigateByUrl('/main-page');
+    if (this.loginForm.valid) {
+      const user: User = JSON.parse(window.localStorage.getItem(this.userKey));
+      const loginFormValue: LoginForm = this.loginForm.value;
+      if (user.login === loginFormValue.login && user.password === loginFormValue.password) {
+        this.authService.logIn();
+        this.router.navigateByUrl('/main-page');
+      }
     }
   }
+
 }

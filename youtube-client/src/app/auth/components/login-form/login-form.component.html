@@ -5,11 +5,12 @@
         <div class="input-field col s12">
           <input id="login" type="text" class="validate" formControlName="login" />
           <label for="login" class="blue-grey-text lighten-5">Login</label>
+          <p *ngIf="loginForm.controls.login.invalid">fdfkdkfkdkfdf</p>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="text" class="validate" formControlName="password"/>
+          <input id="password" type="password" class="validate" formControlName="password"/>
           <label for="password" class="blue-grey-text lighten-5">Password</label>
         </div>
       </div>
