@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {YoutubeResponse} from '../models/youtube-response';
 import {Statistics} from '../models/statistics';
@@ -9,11 +9,8 @@ import {Statistics} from '../models/statistics';
 })
 export class YoutubeApiService {
 
-  private clipIds: string[];
-
-  private clipsInfoUrl: string = '/search?key=apiKey&type=video&part=snippet&maxResults=50&q=';
-  private statisticsUrl: string = '/videos?key=apiKey&id=';
-  private statisticsInfoUrl: string = '&part=snippet,statistics';
+  private clipsInfoUrl: string = '/search?&type=video&part=snippet&maxResults=50&q=';
+  private statisticsUrl: string = '/videos';
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +19,9 @@ export class YoutubeApiService {
   }
 
   public getClipStatistics(clipsIds: string[]): Observable<Statistics> {
-    const ids: string = clipsIds.join(',');
-    return this.http.get<Statistics>(`${this.statisticsUrl}${ids}${this.statisticsInfoUrl}`);
+    const params: HttpParams = new HttpParams()
+      .set('id', clipsIds.join(','))
+      .set('part', 'snippet,statistics');
+    return this.http.get<Statistics>(this.statisticsUrl, {params});
   }
 }

@@ -16,7 +16,8 @@ export class HttpResponseInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(req.clone({
-      url: `${environment.apiUrl}${req.url.replace('apiKey', environment.apiKey)}`,
+      url: `${environment.apiUrl}${req.url}`,
+      params: req.params.append('key', environment.apiKey)
     }));
   }
 }
