@@ -25,7 +25,8 @@ export class SearchComponent implements OnInit {
 
   public ngOnInit(): void {
     this.searchFormInit();
-    this.searchForm.get('inputValue').valueChanges
+    this.searchForm.get('inputValue')
+      .valueChanges
       .pipe(debounceTime(1000))
       .subscribe(() => this.getClipInfo());
   }

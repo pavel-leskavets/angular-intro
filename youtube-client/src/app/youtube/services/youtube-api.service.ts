@@ -9,9 +9,10 @@ import {Statistics} from '../models/statistics';
 })
 export class YoutubeApiService {
 
-  private apiKey: string = 'AIzaSyB4wVDf4eedrmbz0h5UtPEOFmGLpixrCbQ';
-  private clipsInfoUrl: string = `/search?key=${this.apiKey}&type=video&part=snippet&maxResults=50&q=`;
-  private statisticsUrl: string = `/videos?key=${this.apiKey}&id=`;
+  private clipIds: string[];
+
+  private clipsInfoUrl: string = '/search?key=apiKey&type=video&part=snippet&maxResults=50&q=';
+  private statisticsUrl: string = '/videos?key=apiKey&id=';
   private statisticsInfoUrl: string = '&part=snippet,statistics';
 
   constructor(private http: HttpClient) { }
