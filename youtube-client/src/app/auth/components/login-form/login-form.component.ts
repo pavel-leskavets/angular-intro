@@ -27,9 +27,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   public redirectToMainPage(): void {
-    if (this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('/main-page');
-    }
+    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigateByUrl('/main-page');
+      }
+    });
   }
 
   public initLoginForm(): void {

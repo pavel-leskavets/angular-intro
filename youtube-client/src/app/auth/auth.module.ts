@@ -5,6 +5,7 @@ import { RegistrationFormComponent } from './components/registration-form/regist
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -12,10 +13,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     RegistrationFormComponent,
     AuthPageComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    ReactiveFormsModule
-  ]
-})
+            imports: [
+              CommonModule,
+              AuthRoutingModule,
+              ReactiveFormsModule,
+              MatInputModule
+            ]
+          })
 export class AuthModule { }

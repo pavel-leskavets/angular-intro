@@ -2,11 +2,9 @@
   <div class="login-container">
     <form class="col s6" [formGroup]="loginForm" (ngSubmit)="toMainPage()" >
       <div class="row">
-        <div class="input-field col s12">
-          <input id="login" type="text" class="validate" formControlName="login" />
+          <input matInput id="login" type="text" formControlName="login" />
           <label for="login" class="blue-grey-text lighten-5">Login</label>
-          <p *ngIf="loginForm.controls.login.invalid">fdfkdkfkdkfdf</p>
-        </div>
+          <mat-error>fgfdgdfg</mat-error>
       </div>
       <div class="row">
         <div class="input-field col s12">
