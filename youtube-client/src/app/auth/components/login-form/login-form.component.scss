@@ -1,1 +1,18 @@
+::ng-deep {
+  mat-form-field {
+    width: 100%;
+  }
 
+  mat-error {
+    font-size: 1.2em;
+  }
+
+  mat-label {
+    color: black;
+    font-size: 1.4em;
+  }
+
+  .mat-form-field-underline {
+    display: none !important;
+  }
+}

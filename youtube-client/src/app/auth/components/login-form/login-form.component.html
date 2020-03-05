@@ -1,17 +1,16 @@
 <div class="login-wrapper fadeInDown blue-grey lighten-5">
   <div class="login-container">
-    <form class="col s6" [formGroup]="loginForm" (ngSubmit)="toMainPage()" >
-      <div class="row">
-          <input matInput id="login" type="text" formControlName="login" />
-          <label for="login" class="blue-grey-text lighten-5">Login</label>
-          <mat-error>fgfdgdfg</mat-error>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate" formControlName="password"/>
-          <label for="password" class="blue-grey-text lighten-5">Password</label>
-        </div>
-      </div>
+    <form (ngSubmit)="toMainPage()" [formGroup]="loginForm">
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input formControlName="login" id="login" matInput type="text"/>
+        <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" id="password" matInput type="password"/>
+        <mat-error *ngIf="hasError('password', 'required')">Поле обязательно для заполнения</mat-error>
+      </mat-form-field>
       <div class="right">
         <a [routerLink]="'/registration'" class="registration-link">
           Registration

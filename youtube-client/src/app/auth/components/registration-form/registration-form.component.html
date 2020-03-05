@@ -1,36 +1,38 @@
 <div class="registration-wrapper fadeInDown blue-grey lighten-5">
   <div class="login-container">
-    <form class="col s6" [formGroup]="registrationForm" (ngSubmit)="saveNewUser()">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="first_name" type="text" class="validate" formControlName="firstName" />
-          <label for="first_name" class="blue-grey-text lighten-5">First name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate" formControlName="lastName" />
-          <label for="last_name" class="blue-grey-text lighten-5">Last name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="text" class="validate" formControlName="login" />
-          <label for="email" class="blue-grey-text lighten-5">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="registration_password" type="text" class="validate" formControlName="password" />
-          <label for="registration_password" class="blue-grey-text lighten-5">Password</label>
-        </div>
-      </div>
+    <form (ngSubmit)="saveNewUser()" [formGroup]="registrationForm">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input formControlName="firstName" id="first_name" matInput type="text"/>
+        <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input formControlName="lastName" id="last_name" matInput type="text"/>
+        <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input formControlName="login" id="email" matInput type="text"/>
+        <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="hasError('login', 'minlength')">Минимальная длина 5 символов</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" id="registration_password" matInput type="password"/>
+        <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
+        <mat-error *ngIf="hasError('login', 'minlength')">Минимальная длина 5 символов</mat-error>
+      </mat-form-field>
+
       <div class="right">
         <a [routerLink]="'/login'" class="registration-link">Sign in</a>
         <button
           class="btn waves-effect teal darken-4"
-          type="submit"
           name="action"
+          type="submit"
         >
           Registration
         </button>

@@ -10,7 +10,7 @@ import {YoutubeApiService} from '../../services/youtube-api.service';
  })
 export class FullInfoCardComponent implements OnInit {
 
-  public currentClip: ClipInfoFromStatistics;
+  public currentClip: ClipInfoFromStatistics = null;
 
   constructor(private route: ActivatedRoute,
               private youtubeApiService: YoutubeApiService

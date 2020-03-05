@@ -14,6 +14,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
-
+    MatInputModule
   ],
   exports: [
     ClipCardComponent,

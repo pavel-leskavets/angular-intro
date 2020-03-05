@@ -6,6 +6,7 @@ import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatInputModule} from '@angular/material/input';
               CommonModule,
               AuthRoutingModule,
               ReactiveFormsModule,
-              MatInputModule
+              MatFormFieldModule,
+              MatInputModule,
             ]
           })
 export class AuthModule { }

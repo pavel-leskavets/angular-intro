@@ -22,8 +22,8 @@ export class LoginFormComponent implements OnInit {
               private formBuilder: FormBuilder) {}
 
   public ngOnInit(): void {
-    this.redirectToMainPage();
     this.initLoginForm();
+    this.redirectToMainPage();
   }
 
   public redirectToMainPage(): void {
@@ -50,6 +50,10 @@ export class LoginFormComponent implements OnInit {
         this.router.navigateByUrl('/main-page');
       }
     }
+  }
+
+  public hasError(controlName: string, errorName: string): boolean {
+    return this.loginForm.controls[controlName].hasError(errorName);
   }
 
 }

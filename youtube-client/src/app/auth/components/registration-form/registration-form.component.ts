@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInfo} from '../../enum/user-info.enum';
 import {AuthService} from '../../services/auth.service';
 
@@ -25,16 +25,22 @@ export class RegistrationFormComponent implements OnInit {
 
   public initRegistrationForm(): void {
     this.registrationForm = this.formBuilder.group({
-      firstName: null,
-      lastName: null,
-      login: null,
-      password: null
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      login: [null, [Validators.required, Validators.minLength(5)]],
+      password: [null, [Validators.required, Validators.minLength(5)]]
     });
   }
 
   public saveNewUser(): void {
-    window.localStorage.setItem(this.userKey, JSON.stringify(this.registrationForm.value));
-    this.authService.logIn();
-    this.router.navigateByUrl('/login');
+    if (this.registrationForm.valid) {
+      window.localStorage.setItem(this.userKey, JSON.stringify(this.registrationForm.value));
+      this.authService.logIn();
+      this.router.navigateByUrl('/login');
+    }
+  }
+
+  public hasError(controlName: string, errorName: string): boolean {
+    return this.registrationForm.controls[controlName].hasError(errorName);
   }
 }

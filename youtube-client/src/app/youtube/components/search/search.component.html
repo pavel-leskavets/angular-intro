@@ -1,23 +1,23 @@
 <div class="search_container">
   <div class="search_input_container">
     <form [formGroup]="searchForm">
-      <div class="search_form input-field col s12">
+      <mat-form-field [ngClass]="'search-input'">
         <input
-          placeholder="What do you want to find out?"
-          id="search_input"
-          type="text"
-          class="validate"
           formControlName="inputValue"
+          id="search_input"
+          matInput
+          placeholder="What do you want to find out?"
+          type="text"
         />
-        <div class="additional_settings_button">
-          <i (click)="showSettings()" class="material-icons dp48">settings</i>
-        </div>
+      </mat-form-field>
+      <div class="additional_settings_button">
+        <i (click)="showSettings()" class="material-icons dp48">settings</i>
       </div>
     </form>
   </div>
   <app-user></app-user>
 </div>
 <div class="search_settings_container">
-  <app-search-settings [clipInfo]="clipInfo" *ngIf="isSettings"></app-search-settings>
+  <app-search-settings *ngIf="isSettings" [clipInfo]="clipInfo"></app-search-settings>
 </div>
 

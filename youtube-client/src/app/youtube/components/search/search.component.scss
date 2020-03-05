@@ -1,3 +1,13 @@
+::ng-deep {
+   .search-input {
+    width: 350px;
+  }
+
+  .mat-form-field-underline {
+    display: none !important;
+  }
+}
+
 .search_container {
   display: flex;
   justify-content: space-between;
@@ -12,6 +22,7 @@
   align-items: center;
   width: 100%;
   height: 50px;
+  padding-top: 40px;
 }
 
 .search_form {
@@ -28,27 +39,29 @@
   padding: 0;
 }
 
-input[type=text] {
-  height: 36px;
-  color: #000;
-  background-color: #fff;
-  padding: 0;
-  margin: 0;
-  border-top-left-radius: 1%;
-  border-bottom-left-radius: 1%;
-  border: none;
-}
+//input[type=text] {
+//  height: 36px;
+//  color: #000;
+//  background-color: #fff;
+//  padding: 0;
+//  margin: 0;
+//  border-top-left-radius: 1%;
+//  border-bottom-left-radius: 1%;
+//  border: none;
+//}
 
-input[type=text]::placeholder {
-  color: #545c56;
-}
+//input[type=text]::placeholder {
+//  color: #545c56;
+//}
 
 .search_button {
   padding-right: 20px;
 }
 
 .additional_settings_button {
-  margin-left: 30px;
+  display: inline;
+  width: 20px;
+  height: 20px;
 }
 
 :host {

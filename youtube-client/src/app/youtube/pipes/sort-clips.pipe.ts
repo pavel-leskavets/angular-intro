@@ -16,7 +16,7 @@ export class SortClipsPipe implements PipeTransform {
   }
 
   public transform(clips: ClipInfoFromStatistics[], sort: Sort): ClipInfoFromStatistics[] {
-    if (sort) {
+    if (clips && sort) {
       return clips.sort((a, b) => {
         const isAsc: boolean = sort.direction === this.sortTypes.IsAsc;
         switch (sort.active) {
