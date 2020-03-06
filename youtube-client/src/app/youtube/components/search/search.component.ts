@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -20,11 +21,13 @@ export class SearchComponent implements OnInit {
 
   constructor(private youtubeApiService: YoutubeApiService,
               private clipInfoService: ClipInfoService,
+              private authService: AuthService,
               private formBuilder: FormBuilder) {
   }
 
   public ngOnInit(): void {
     this.searchFormInit();
+    this.disableInput();
     this.searchForm.get('inputValue')
       .valueChanges
       .pipe(debounceTime(1000))
@@ -39,7 +42,7 @@ export class SearchComponent implements OnInit {
 
   public getClipInfo(): void {
     const searchValue: string = this.searchForm.get('inputValue').value;
-    if (searchValue.length >= this.minRequestLength) {
+    if (searchValue && searchValue.length >= this.minRequestLength) {
     this.youtubeApiService.getClipsInfo(searchValue)
       .pipe(
         switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
@@ -53,6 +56,16 @@ export class SearchComponent implements OnInit {
         this.clipInfoService.setClipInfo.next(this.clipInfo);
       });
     }
+  }
+
+  public disableInput(): void {
+    this.authService.isLoggedIn.subscribe( isLoggedIn => {
+      if (!isLoggedIn) {
+        this.searchForm.get('inputValue').disable();
+      } else {
+        this.searchForm.get('inputValue').enable();
+      }
+    });
   }
 
   public showSettings(): void {

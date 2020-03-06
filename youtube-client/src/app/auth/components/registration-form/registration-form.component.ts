@@ -41,6 +41,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   public hasError(controlName: string, errorName: string): boolean {
+    console.log(1)
     return this.registrationForm.controls[controlName].hasError(errorName);
   }
 }

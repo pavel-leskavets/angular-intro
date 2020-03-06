@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../models/user';
 import {UserInfo} from '../../enum/user-info.enum';
 import {LoginForm} from '../../models/loginForm';
+import {UserValidator} from '../../Validators/user-validator';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +15,7 @@ import {LoginForm} from '../../models/loginForm';
 export class LoginFormComponent implements OnInit {
 
   private userKey: string = UserInfo.localStorageKey;
+  private user: User;
 
   public loginForm: FormGroup;
 
@@ -24,6 +26,7 @@ export class LoginFormComponent implements OnInit {
   public ngOnInit(): void {
     this.initLoginForm();
     this.redirectToMainPage();
+    this.user = JSON.parse(window.localStorage.getItem(this.userKey));
   }
 
   public redirectToMainPage(): void {
@@ -36,16 +39,16 @@ export class LoginFormComponent implements OnInit {
 
   public initLoginForm(): void {
     this.loginForm = this.formBuilder.group({
-      login: [null, Validators.required],
+      login: [null, [Validators.required]],
       password: [null, Validators.required]
     });
   }
 
   public toMainPage(): void {
+    this.userInvalid();
     if (this.loginForm.valid) {
-      const user: User = JSON.parse(window.localStorage.getItem(this.userKey));
       const loginFormValue: LoginForm = this.loginForm.value;
-      if (user.login === loginFormValue.login && user.password === loginFormValue.password) {
+      if (this.user.login === loginFormValue.login && this.user.password === loginFormValue.password) {
         this.authService.logIn();
         this.router.navigateByUrl('/main-page');
       }
@@ -54,6 +57,13 @@ export class LoginFormComponent implements OnInit {
 
   public hasError(controlName: string, errorName: string): boolean {
     return this.loginForm.controls[controlName].hasError(errorName);
+  }
+
+  public userInvalid(): void {
+    const userLogin: AbstractControl = this.loginForm.get('login');
+    const userPassword: AbstractControl = this.loginForm.get('password');
+    userLogin.setValidators(UserValidator.checkUserInfo(userLogin, this.user.login));
+    userPassword.setValidators(UserValidator.checkUserInfo(userPassword, this.user.login));
   }
 
 }

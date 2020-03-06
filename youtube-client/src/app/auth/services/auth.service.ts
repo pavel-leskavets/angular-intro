@@ -18,8 +18,8 @@ export class AuthService {
   }
 
   public logOut(): void {
+    window.localStorage.setItem(this.localStorageKey, JSON.stringify(false));
     this.isAuthenticated = false;
     this.isLoggedIn.next(false);
-    window.localStorage.clear();
   }
 }
