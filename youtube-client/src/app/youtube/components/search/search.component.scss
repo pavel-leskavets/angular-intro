@@ -1,28 +1,35 @@
 ::ng-deep {
-   .search-input {
-    width: 350px;
+  .search-input {
+    width: 420px;
+    color: rgb(145, 145, 145);
+  }
+
+  .mat-form-field-label{
+    color: rgb(145, 145, 145) !important;
+
+  }
+
+  i {
+    color: rgb(145, 145, 145);
   }
 
   .mat-form-field-underline {
     display: none !important;
   }
+
+  mat-label {
+    padding-left: 20px;
+  }
+
 }
 
 .search_container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 80px;
-}
-
-.search_input_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  padding-top: 40px;
+  height: 200px;
 }
 
 .search_form {
@@ -33,40 +40,12 @@
   height: 60px;
 }
 
-.search_settings_container {
-  width: 100%;
-  height: 100px;
-  padding: 0;
-}
-
-//input[type=text] {
-//  height: 36px;
-//  color: #000;
-//  background-color: #fff;
-//  padding: 0;
-//  margin: 0;
-//  border-top-left-radius: 1%;
-//  border-bottom-left-radius: 1%;
-//  border: none;
-//}
-
-//input[type=text]::placeholder {
-//  color: #545c56;
-//}
-
 .search_button {
   padding-right: 20px;
 }
 
 .additional_settings_button {
-  display: inline;
+  display: block;
   width: 20px;
   height: 20px;
 }
-
-:host {
-  app-user {
-    margin-left: 20px;
-  }
-}
-

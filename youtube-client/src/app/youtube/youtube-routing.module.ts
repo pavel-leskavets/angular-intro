@@ -6,7 +6,7 @@ import {ClipsResolver} from './resolvers/clip-info.resolver';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent, resolve: {clips: ClipsResolver}},
-  {path: ':id', component: FullInfoCardComponent, resolve: {clips: ClipsResolver}}
+  {path: ':id', component: FullInfoCardComponent, resolve: {clips: ClipsResolver}},
 ];
 
 @NgModule({

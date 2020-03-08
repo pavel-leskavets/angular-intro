@@ -2,6 +2,12 @@
   app-search {
     width: 100%;
   }
+
+  app-user {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
 }
 
 .login-wrapper,
@@ -11,7 +17,6 @@
   align-items: center;
   width: 500px;
   height: 300px;
-  margin: 15% auto 0;
   box-shadow: 0 0 20px #000;
   border-radius: 5%;
 }
@@ -21,8 +26,7 @@
 }
 
 .registration-wrapper {
-  height: 500px;
-  margin-top: 5%;
+  height: 380px;
 }
 
 .input-field label {
@@ -65,8 +69,8 @@
   }
   100% {
     opacity: 1;
-    -webkit-transform: none;
-    transform: none;
+    -webkit-transform: translate3d(0, -15%, 0);;
+    transform: translate3d(0, -15%, 0);;
   }
 }
 

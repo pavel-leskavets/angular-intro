@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
   public setUserName(): void {
     if (this.isLoggedIn) {
       const userName: User = JSON.parse(window.localStorage.getItem(this.userKey));
-      this.userName = `${userName.firstName} ${userName.lastName}`;
+      this.userName = userName.login;
     }
   }
 

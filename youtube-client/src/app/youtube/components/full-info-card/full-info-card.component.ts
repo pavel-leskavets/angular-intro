@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {YoutubeApiService} from '../../services/youtube-api.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
    selector: 'app-full-info-card',
@@ -13,14 +14,23 @@ export class FullInfoCardComponent implements OnInit {
   public currentClip: ClipInfoFromStatistics = null;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private youtubeApiService: YoutubeApiService
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.youtubeApiService.getClipStatistics([params.id]).subscribe((clip) => {
+    this.route.params.pipe(switchMap(params => this.youtubeApiService
+      .getClipStatistics([params.id])))
+      .subscribe(clip => {
         [this.currentClip] = clip.items;
+        this.redirectToMain();
       });
-    });
+  }
+
+  public redirectToMain(): void {
+    if (!this.currentClip) {
+      this.router.navigateByUrl('/main-page');
+    }
   }
 }

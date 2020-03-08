@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   public clipInfo: ClipInfoFromStatistics[];
   public searchForm: FormGroup;
   public isSettings: boolean;
+  public isLoggedIn: boolean;
 
   constructor(private youtubeApiService: YoutubeApiService,
               private clipInfoService: ClipInfoService,
@@ -60,6 +61,7 @@ export class SearchComponent implements OnInit {
 
   public disableInput(): void {
     this.authService.isLoggedIn.subscribe( isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
       if (!isLoggedIn) {
         this.searchForm.get('inputValue').disable();
       } else {

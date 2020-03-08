@@ -26,7 +26,6 @@ export class RegistrationFormComponent implements OnInit {
   public initRegistrationForm(): void {
     this.registrationForm = this.formBuilder.group({
       firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
       login: [null, [Validators.required, Validators.minLength(5)]],
       password: [null, [Validators.required, Validators.minLength(5)]]
     });
