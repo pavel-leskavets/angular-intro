@@ -1,7 +1,16 @@
 <div class="clip_container">
-  <div *ngFor="let clip of clipInfo | sortPipe: sortParams | filterClips: filterValue" class="clip_item">
-    <app-clip-card [clip]="clip"></app-clip-card>
-  </div>
+  <ng-container *ngIf="!isSpinner">
+    <div *ngFor="let clip of clipInfo | sortPipe: sortParams | filterClips: filterValue" class="clip_item">
+      <app-clip-card [clip]="clip"></app-clip-card>
+    </div>
+  </ng-container>
 </div>
-
+<div *ngIf="isSpinner" class="progress_spinner">
+  <mat-progress-spinner *ngIf="isSpinner"
+    class="example-margin"
+    [color]="color"
+    [mode]="mode"
+    [value]="value">
+  </mat-progress-spinner>
+</div>
 

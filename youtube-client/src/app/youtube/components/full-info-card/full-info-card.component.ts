@@ -28,7 +28,6 @@ export class FullInfoCardComponent implements OnInit {
       .getClipStatistics([params.id])))
       .subscribe(clip => {
         [this.currentClip] = clip.items;
-        console.log(this.currentClip)
         this.src = this.sanitizer
           .bypassSecurityTrustResourceUrl(`${environment.videoUrl}${this.currentClip.id}`);
         this.redirectToMain();

@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -27,16 +28,17 @@ import {MatInputModule} from '@angular/material/input';
     UserComponent,
     NotFoundComponent,
   ],
-  imports: [
-    CommonModule,
-    YoutubeRoutingModule,
-    SharedModule,
-    MatSortModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule
-  ],
+            imports: [
+              CommonModule,
+              YoutubeRoutingModule,
+              SharedModule,
+              MatSortModule,
+              ReactiveFormsModule,
+              MatCardModule,
+              MatButtonModule,
+              MatInputModule,
+              MatProgressSpinnerModule
+            ],
   exports: [
     ClipCardComponent,
     ClipContainerComponent,

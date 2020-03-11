@@ -9,7 +9,7 @@ import {Statistics} from '../models/statistics';
 })
 export class YoutubeApiService {
 
-  private clipsInfoUrl: string = '/search?&type=video&part=snippet&maxResults=50&q=';
+  private clipsInfoUrl: string = '/search?&type=video&part=snippet&maxResults=24&q=';
   private statisticsUrl: string = '/videos';
 
   constructor(private http: HttpClient) { }

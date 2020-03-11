@@ -7,10 +7,10 @@ import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
-})
+             selector: 'app-search',
+             templateUrl: './search.component.html',
+             styleUrls: ['./search.component.scss']
+           })
 export class SearchComponent implements OnInit {
 
   private minRequestLength: number = 3;
@@ -37,30 +37,32 @@ export class SearchComponent implements OnInit {
 
   public searchFormInit(): void {
     this.searchForm = this.formBuilder.group({
-      inputValue: null
-    });
+                                               inputValue: null
+                                             });
   }
 
   public getClipInfo(): void {
     const searchValue: string = this.searchForm.get('inputValue').value;
     if (searchValue && searchValue.length >= this.minRequestLength) {
-    this.youtubeApiService.getClipsInfo(searchValue)
-      .pipe(
-        switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
-          .pipe(
-            map(stats => ({info, stats}))
+      this.clipInfoService.isSpinner.next(true);
+      this.youtubeApiService.getClipsInfo(searchValue)
+        .pipe(
+          switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
+            .pipe(
+              map(stats => ({info, stats}))
+            )
           )
         )
-      )
-      .subscribe(res  => {
-        this.clipInfo = res.stats.items;
-        this.clipInfoService.setClipInfo.next(this.clipInfo);
-      });
+        .subscribe(res => {
+          this.clipInfo = res.stats.items;
+          this.clipInfoService.setClipInfo.next(this.clipInfo);
+          this.clipInfoService.isSpinner.next(false);
+        });
     }
   }
 
   public disableInput(): void {
-    this.authService.isLoggedIn.subscribe( isLoggedIn => {
+    this.authService.isLoggedIn.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       if (!isLoggedIn) {
         this.searchForm.get('inputValue').disable();
