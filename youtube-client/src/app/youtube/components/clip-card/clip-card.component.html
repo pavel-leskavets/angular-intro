@@ -22,12 +22,6 @@
   </div>
   <div class="clip_title">
     <h6>{{clip.snippet.title}}</h6>
-    <button
-      class="btn waves-effect teal darken-4 center"
-      type="button"
-      (click)="getMoreInfo(clip.id)"
-    >
-      More info
-    </button>
+    <button mat-raised-button (click)="getMoreInfo(clip.id)">More info</button>
   </div>
 </div>

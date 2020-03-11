@@ -17,8 +17,10 @@
   align-items: center;
   width: 500px;
   height: 300px;
-  box-shadow: 0 0 20px #000;
+  box-shadow: 0 0 20px rgb(145, 145, 145);
   border-radius: 5%;
+  background-color: #111 !important;
+  color: rgb(145, 145, 145);
 }
 
 .login-container {

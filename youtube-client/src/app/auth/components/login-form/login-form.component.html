@@ -1,13 +1,13 @@
 <div class="login-wrapper fadeInDown blue-grey lighten-5">
   <div class="login-container">
     <form (ngSubmit)="toMainPage()" [formGroup]="loginForm">
-      <mat-form-field>
+      <mat-form-field [ngClass]="'search-input'">
         <mat-label>Login</mat-label>
         <input formControlName="login" id="login" matInput type="text"/>
         <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
         <mat-error *ngIf="hasError('login', 'dataNotMatch')">Недействительный логин</mat-error>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field [ngClass]="'search-input'">
         <mat-label>Password</mat-label>
         <input formControlName="password" id="password" matInput type="password"/>
         <mat-error *ngIf="hasError('password', 'required')">Поле обязательно для заполнения</mat-error>
@@ -17,12 +17,7 @@
         <a [routerLink]="'/registration'" class="registration-link">
           Registration
         </a>
-        <button
-          class="btn waves-effect teal darken-4"
-          type="submit"
-        >
-          Sign in
-        </button>
+        <button mat-raised-button>Sign in</button>
       </div>
     </form>
   </div>

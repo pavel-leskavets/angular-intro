@@ -1,5 +1,11 @@
 <div *ngIf="currentClip" class="full_info_card">
-  <img [src]="currentClip.snippet.thumbnails.high.url" alt="clip-img" class="full_info_img">
+  <iframe width="600"
+          height="400"
+          [src]="src"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
   <div class="full_info">
     <div>
       <h2 class="mat-h2">{{currentClip.snippet.title}}</h2>
@@ -26,10 +32,7 @@
         <span class="statistics_info_text">{{currentClip.statistics.commentCount}}</span>
       </span>
     </div>
-    <button mat-button color="accent">
       <a mat-raised-button routerLink="/main-page">Back to main page</a>
-    </button>
-
   </div>
 </div>
 

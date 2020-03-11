@@ -62,8 +62,10 @@ export class LoginFormComponent implements OnInit {
   public userInvalid(): void {
     const userLogin: AbstractControl = this.loginForm.get('login');
     const userPassword: AbstractControl = this.loginForm.get('password');
-    userLogin.setValidators(UserValidator.checkUserInfo(userLogin, this.user.login));
-    userPassword.setValidators(UserValidator.checkUserInfo(userPassword, this.user.login));
+    if (this.user) {
+      userLogin.setValidators(UserValidator.checkUserInfo(userLogin, this.user.login));
+      userPassword.setValidators(UserValidator.checkUserInfo(userPassword, this.user.password));
+    }
   }
 
 }

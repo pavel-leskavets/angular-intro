@@ -1,20 +1,20 @@
 <div class="registration-wrapper fadeInDown blue-grey lighten-5">
   <div class="login-container">
     <form (ngSubmit)="saveNewUser()" [formGroup]="registrationForm">
-      <mat-form-field>
+      <mat-form-field [ngClass]="'search-input'">
         <mat-label>First name</mat-label>
         <input formControlName="firstName" id="first_name" matInput type="text"/>
         <mat-error *ngIf="hasError('firstName', 'required')">Поле обязательно для заполнения</mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field [ngClass]="'search-input'">
         <mat-label>Login</mat-label>
         <input formControlName="login" id="email" matInput type="text"/>
         <mat-error *ngIf="hasError('login', 'required')">Поле обязательно для заполнения</mat-error>
         <mat-error *ngIf="hasError('login', 'minlength')">Минимальная длина 5 символов</mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field [ngClass]="'search-input'">
         <mat-label>Password</mat-label>
         <input formControlName="password" id="registration_password" matInput type="password"/>
         <mat-error *ngIf="hasError('password', 'required')">Поле обязательно для заполнения</mat-error>
@@ -23,13 +23,7 @@
 
       <div class="right">
         <a [routerLink]="'/login'" class="registration-link">Sign in</a>
-        <button
-          class="btn waves-effect teal darken-4"
-          name="action"
-          type="submit"
-        >
-          Registration
-        </button>
+        <button mat-raised-button>Registration</button>
       </div>
     </form>
   </div>

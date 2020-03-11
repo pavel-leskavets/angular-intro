@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {switchMap} from 'rxjs/operators';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {environment} from '../../../../environments/environment.prod';
 
 @Component({
    selector: 'app-full-info-card',
@@ -12,9 +14,11 @@ import {switchMap} from 'rxjs/operators';
 export class FullInfoCardComponent implements OnInit {
 
   public currentClip: ClipInfoFromStatistics = null;
+  public src: SafeResourceUrl;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private sanitizer: DomSanitizer,
               private youtubeApiService: YoutubeApiService
   ) {
   }
@@ -24,6 +28,9 @@ export class FullInfoCardComponent implements OnInit {
       .getClipStatistics([params.id])))
       .subscribe(clip => {
         [this.currentClip] = clip.items;
+        console.log(this.currentClip)
+        this.src = this.sanitizer
+          .bypassSecurityTrustResourceUrl(`${environment.videoUrl}${this.currentClip.id}`);
         this.redirectToMain();
       });
   }
