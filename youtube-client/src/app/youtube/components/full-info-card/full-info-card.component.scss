@@ -1,0 +1,32 @@
+  .full_info_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    height: 70vh;
+    color: rgb(145, 145, 145);
+  }
+
+  .full_info_img {
+    width: 640px;
+    height: 400px;
+  }
+
+  .full_info {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    width: 40%;
+    height: 90%;
+  }
+
+  .full_info_date {
+    padding: 10px;
+    font-style: italic;
+  }
+
+  a {
+    width: 170px;
+    margin: 0 auto;
+  }

@@ -1,0 +1,27 @@
+<div class="clip_card" [appBorderByDate]="clip.snippet.publishedAt">
+  <div>
+    <img [src]="clip.snippet.thumbnails.medium.url" class="card_image">
+  </div>
+  <div class="clip_statistics">
+    <span class="statistics_info">
+      <i class="material-icons dp48">remove_red_eye</i>
+      <span class="statistics_info_text">{{clip.statistics.viewCount | cutOff}}</span>
+    </span>
+    <span class="statistics_info">
+      <i class="material-icons dp48">favorite</i>
+      <span class="statistics_info_text">{{clip.statistics.likeCount | cutOff}}</span>
+    </span>
+    <span class="statistics_info">
+      <i class="material-icons dp48">favorite_border</i>
+      <span class="statistics_info_text">{{clip.statistics.dislikeCount | cutOff}}</span>
+    </span>
+    <span class="statistics_info">
+      <i class="material-icons dp48">comment</i>
+      <span class="statistics_info_text">{{clip.statistics.commentCount | cutOff}}</span>
+    </span>
+  </div>
+  <div class="clip_title">
+    <h6>{{clip.snippet.title}}</h6>
+    <button mat-raised-button (click)="getMoreInfo(clip.id)">More info</button>
+  </div>
+</div>

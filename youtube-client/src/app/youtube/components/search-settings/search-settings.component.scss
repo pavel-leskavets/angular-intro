@@ -1,0 +1,34 @@
+::ng-deep {
+  .filter_input {
+    color: rgb(145, 145, 145);
+  }
+}
+
+a {
+  color: rgb(145, 145, 145) !important;
+}
+
+.additional_settings_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+
+#sort_by_word {
+  width: 110px;
+  height: 30px;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.sort_links {
+  font-size: 1.1em;
+}
+
+input[type=text]::placeholder {
+  color: #545c56;
+  padding: 0;
+  margin: 0;
+  border: none;
+}

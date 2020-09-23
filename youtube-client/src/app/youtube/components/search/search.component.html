@@ -1,0 +1,18 @@
+<div class="search_container">
+  <form [formGroup]="searchForm">
+    <mat-form-field [ngClass]="'search-input'">
+      <input
+        formControlName="inputValue"
+        id="search_input"
+        matInput
+        placeholder="What do you want to find out?"
+        type="text"
+      />
+    </mat-form-field>
+    <mat-label>
+      <i (click)="showSettings()" class="material-icons dp48">settings</i>
+    </mat-label>
+  </form>
+  <app-search-settings *ngIf="isSettings && isLoggedIn" [clipInfo]="clipInfo"></app-search-settings>
+</div>
+

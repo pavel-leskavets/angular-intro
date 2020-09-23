@@ -1,0 +1,26 @@
+<div class="additional_settings_container">
+  <form [formGroup]="filterForm">
+    <table (matSortChange)="sortClips($event)" matSort>
+      <tr>
+        <th [mat-sort-header]="sortTypes.ByDate">
+          <a class="sort_parameters_link">Date</a>
+        </th>
+        <th [mat-sort-header]="sortTypes.ByViews">
+          <a class="sort_parameters_link">Count of views</a>
+        </th>
+        <th>
+          <label>By word or sentence</label>
+          <input
+            class="filter_input"
+            formControlName="filterValue"
+            id="sort_by_word"
+            placeholder="Enter the word"
+            type="text"
+            (input)="setFilterValue($event.target.value)"
+          />
+        </th>
+      </tr>
+    </table>
+  </form>
+</div>
+
