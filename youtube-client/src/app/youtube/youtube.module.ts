@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {YoutubeRoutingModule} from './youtube-routing.module';
 import {ClipCardComponent} from './components/clip-card/clip-card.component';
@@ -28,17 +28,17 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     UserComponent,
     NotFoundComponent,
   ],
-            imports: [
-              CommonModule,
-              YoutubeRoutingModule,
-              SharedModule,
-              MatSortModule,
-              ReactiveFormsModule,
-              MatCardModule,
-              MatButtonModule,
-              MatInputModule,
-              MatProgressSpinnerModule
-            ],
+  imports: [
+    CommonModule,
+    YoutubeRoutingModule,
+    SharedModule,
+    MatSortModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatProgressSpinnerModule
+  ],
   exports: [
     ClipCardComponent,
     ClipContainerComponent,
@@ -51,4 +51,5 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     SharedModule
   ],
 })
-export class YoutubeModule {}
+export class YoutubeModule {
+}

@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {ClipInfoService} from '../../services/clip-info.service';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {AuthService} from '../../../auth/services/auth.service';
+import {Subscription} from "rxjs";
 
 @Component({
-             selector: 'app-search',
-             templateUrl: './search.component.html',
-             styleUrls: ['./search.component.scss']
-           })
-export class SearchComponent implements OnInit {
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
+})
+export class SearchComponent implements OnInit, OnDestroy {
 
+  private subscriptions: Subscription[] = [];
   private minRequestLength: number = 3;
 
   public clipInfo: ClipInfoFromStatistics[];
@@ -29,23 +31,24 @@ export class SearchComponent implements OnInit {
   public ngOnInit(): void {
     this.searchFormInit();
     this.disableInput();
-    this.searchForm.get('inputValue')
+    const subscription$: Subscription = this.searchForm.get('inputValue')
       .valueChanges
       .pipe(debounceTime(1000))
       .subscribe(() => this.getClipInfo());
+    this.subscriptions.push(subscription$);
   }
 
   public searchFormInit(): void {
     this.searchForm = this.formBuilder.group({
-                                               inputValue: null
-                                             });
+      inputValue: null
+    });
   }
 
   public getClipInfo(): void {
     const searchValue: string = this.searchForm.get('inputValue').value;
     if (searchValue && searchValue.length >= this.minRequestLength) {
       this.clipInfoService.isSpinner.next(true);
-      this.youtubeApiService.getClipsInfo(searchValue)
+      const subscription$: Subscription = this.youtubeApiService.getClipsInfo(searchValue)
         .pipe(
           switchMap(info => this.youtubeApiService.getClipStatistics(info.items.map(id => id.id.videoId))
             .pipe(
@@ -58,11 +61,12 @@ export class SearchComponent implements OnInit {
           this.clipInfoService.setClipInfo.next(this.clipInfo);
           this.clipInfoService.isSpinner.next(false);
         });
+      this.subscriptions.push(subscription$)
     }
   }
 
   public disableInput(): void {
-    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+    const subscription$: Subscription = this.authService.isLoggedIn.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       if (!isLoggedIn) {
         this.searchForm.get('inputValue').disable();
@@ -70,9 +74,15 @@ export class SearchComponent implements OnInit {
         this.searchForm.get('inputValue').enable();
       }
     });
+    this.subscriptions.push(subscription$)
   }
 
   public showSettings(): void {
     this.isSettings = !this.isSettings;
   }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(item => item.unsubscribe())
+  }
+
 }

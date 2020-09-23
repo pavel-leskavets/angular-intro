@@ -1,17 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ClipInfoFromStatistics} from '../../models/clip-info-from-statistics';
 import {YoutubeApiService} from '../../services/youtube-api.service';
 import {switchMap} from 'rxjs/operators';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {environment} from '../../../../environments/environment.prod';
+import {Subscription} from "rxjs";
 
 @Component({
    selector: 'app-full-info-card',
    templateUrl: './full-info-card.component.html',
    styleUrls: ['./full-info-card.component.scss']
  })
-export class FullInfoCardComponent implements OnInit {
+export class FullInfoCardComponent implements OnInit, OnDestroy {
+
+  private subscription$: Subscription;
 
   public currentClip: ClipInfoFromStatistics = null;
   public src: SafeResourceUrl;
@@ -24,7 +27,7 @@ export class FullInfoCardComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.route.params.pipe(switchMap(params => this.youtubeApiService
+    this.subscription$ = this.route.params.pipe(switchMap(params => this.youtubeApiService
       .getClipStatistics([params.id])))
       .subscribe(clip => {
         [this.currentClip] = clip.items;
@@ -38,5 +41,9 @@ export class FullInfoCardComponent implements OnInit {
     if (!this.currentClip) {
       this.router.navigateByUrl('/main-page');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }
